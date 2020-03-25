@@ -1,0 +1,62 @@
+<div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header>
+        <div class="inner">
+            <h3 class="masthead-brand">Get da Burger!</h3>
+        </div>
+    </header>
+    <div class="container burger-container">
+        <div class="row">
+            <div class="col col-md-4 col-12">
+                <ul class="list-group  list-group-flus">
+                    {{#each burgers}}
+                        {{#unless devoured}}
+                        <li class="list-group-item">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">{{id}}</span>
+                                </div>
+                                <input type="text" class="form-control" value={{burger_name}} />
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger update-burger-btn" data-id="{{id}}">Devour it</button>
+                                </div>
+                            </div>
+                        </li>
+                        {{/unless}}
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="col col-md-4 col-12">
+                <div>
+                    <div class="text-center">
+                        <img src="/assets/img/burger.png" class="img-fluid" alt="Eat-Da-Burger!" />
+                        <h3 class="burger-heading">Eat-Da-Burger!</h3>
+                    </div>
+                    <div class="text-center">
+                        <form class="burger-form" method="POST" action="/api/burger">
+                            <div class="form-group">
+                                <input type="text" id="burgerNameTxt" class="form-control" name="burgerName" required>
+                            </div>
+                            <button class="btn btn-success" type="submit">Add Burger</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-4 col-12">
+                <ul class="list-group  list-group-flus">
+                    {{#each burgers}}
+                        {{#if devoured}}
+                        <li class="list-group-item">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">{{id}}</span>
+                                </div>
+                                <input type="text" class="form-control" value={{burger_name}} disabled/>
+                            </div>
+                        </li>
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
